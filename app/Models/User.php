@@ -20,6 +20,4 @@ class User extends Authenticatable
         'password',
     ];
 
-    // Remove the casts() method to prevent auto-hashing
-    // since your existing passwords are plain text
 }

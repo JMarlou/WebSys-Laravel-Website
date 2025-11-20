@@ -8,8 +8,7 @@ class PersonalInfo extends Model
 {
     protected $table = 'personal_info';
     
-    public $timestamps = false; // Since your table doesn't have created_at/updated_at
-    
+    public $timestamps = false; 
     protected $fillable = [
         'name',
         'title',

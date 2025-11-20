@@ -10,10 +10,6 @@
 </head>
 <body>
 
-{{-- ==========================================
-     LOGIN CONTAINER
-     Center the login box on the page
-     ========================================== --}}
 <div class="login-container">
     
     <div class="login-box">
@@ -25,10 +21,9 @@
             View Public Resume
         </a>
 
-        {{-- ==========================================
-             DISPLAY VALIDATION ERRORS
-             Shows any errors from failed login attempt
-             ========================================== --}}
+        {{--DISPLAY VALIDATION ERRORS
+            Shows any errors from failed login attempt--}}
+
         @if ($errors->any())
             <div class="error">
                 @foreach ($errors->all() as $error)
@@ -37,10 +32,8 @@
             </div>
         @endif
 
-        {{-- ==========================================
-             LOGIN FORM
-             Submits to route('login') which calls AuthController@login
-             ========================================== --}}
+        {{-- LOGIN FORM
+             Submits to route('login') which calls AuthController@login--}}
         <form method="POST" action="{{ route('login') }}">
             {{-- CSRF Token - Required for all POST requests in Laravel --}}
             @csrf

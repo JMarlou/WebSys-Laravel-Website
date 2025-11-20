@@ -11,9 +11,7 @@
     use App\Models\Experience;
 
     /**
-     * ============================================
      * UserController
-     * ============================================
      * Manages resume CRUD operations:
      * - Personal Information
      * - Education
@@ -25,21 +23,10 @@
      */
     class UserController extends Controller
     {
-        // ==========================================
         // DASHBOARD & PERSONAL INFO
-        // ==========================================
-
-        /**
-         * Display the admin dashboard
-         * 
-         * Shows all resume data for editing:
-         * - Personal information
-         * - Education records
-         * - Skills
-         * - Experience entries
-         * 
-         * @return \Illuminate\View\View
-         */
+        //Display the admin dashboard
+        //Shows all resume data for editing
+        
         public function dashboard()
         {
             // Get the currently authenticated user
@@ -71,15 +58,6 @@
             return view('dashboard', compact('user', 'info', 'education', 'skills', 'experiences'));
         }
 
-        /**
-         * Update personal information
-         * 
-         * Updates or creates the personal_info record.
-         * Only 1 record should exist in the database.
-         * 
-         * @param Request $request - Contains form data
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function updateResume(Request $request)
         {
             // Validate all incoming data
@@ -107,23 +85,13 @@
             return back()->with('success', 'Personal information updated successfully!');
         }
 
-        // ==========================================
-        // EDUCATION CRUD OPERATIONS
-        // ==========================================
-
-        /**
-         * Add new education entry
-         * 
-         * @param Request $request
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function addEducation(Request $request)
         {
             // Validate education data
             $validated = $request->validate([
-                'level' => 'required|string|max:255',   // e.g., "College", "High School"
-                'school' => 'required|string|max:255',  // School name
-                'years' => 'required|string|max:255',   // e.g., "2020-2024"
+                'level' => 'required|string|max:255',   
+                'school' => 'required|string|max:255',
+                'years' => 'required|string|max:255',   
             ]);
 
             // Create new education record
@@ -132,13 +100,6 @@
             return back()->with('success', 'Education added successfully!');
         }
 
-        /**
-         * Update existing education entry
-         * 
-         * @param Request $request
-         * @param int $id - Education record ID
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function updateEducation(Request $request, $id)
         {
             // Validate updated data
@@ -157,12 +118,6 @@
             return back()->with('success', 'Education updated successfully!');
         }
 
-        /**
-         * Delete education entry
-         * 
-         * @param int $id - Education record ID
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function deleteEducation($id)
         {
             // Find and delete the education record
@@ -172,16 +127,6 @@
             return back()->with('success', 'Education deleted successfully!');
         }
 
-        // ==========================================
-        // SKILLS CRUD OPERATIONS
-        // ==========================================
-
-        /**
-         * Add new skill
-         * 
-         * @param Request $request
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function addSkill(Request $request)
         {
             // Validate skill name
@@ -195,12 +140,6 @@
             return back()->with('success', 'Skill added successfully!');
         }
 
-        /**
-         * Delete skill
-         * 
-         * @param int $id - Skill record ID
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function deleteSkill($id)
         {
             // Find and delete the skill
@@ -209,16 +148,6 @@
             return back()->with('success', 'Skill deleted successfully!');
         }
 
-        // ==========================================
-        // EXPERIENCE CRUD OPERATIONS
-        // ==========================================
-
-        /**
-         * Add new experience entry
-         * 
-         * @param Request $request
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function addExperience(Request $request)
         {
             // Validate experience description
@@ -232,13 +161,6 @@
             return back()->with('success', 'Experience added successfully!');
         }
 
-        /**
-         * Update existing experience entry
-         * 
-         * @param Request $request
-         * @param int $id - Experience record ID
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function updateExperience(Request $request, $id)
         {
             // Validate updated description
@@ -253,12 +175,6 @@
             return back()->with('success', 'Experience updated successfully!');
         }
 
-        /**
-         * Delete experience entry
-         * 
-         * @param int $id - Experience record ID
-         * @return \Illuminate\Http\RedirectResponse
-         */
         public function deleteExperience($id)
         {
             // Find and delete the experience
@@ -267,19 +183,14 @@
             return back()->with('success', 'Experience deleted successfully!');
         }
 
-        // ==========================================
         // PUBLIC RESUME VIEW
-        // ==========================================
 
         /**
          * Display public resume page
-         * 
          * This is publicly accessible (no authentication required).
          * Shows the complete resume with all sections.
-         * 
-         * @param int $id - Personal info ID (defaults to 1)
-         * @return \Illuminate\View\View
          */
+        
         public function showPublicResume($id = 1)
         {
             // Try to find personal info by ID
